@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', serif;
+    background: #2a1a4e;
+    color: #e8c9b8;
+}
+
+header {
+    background: #3d2660;
+    padding: 60px 40px;
+    text-align: center;
+    border-bottom: 2px solid #6a5acd;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5em;
+    letter-spacing: 8px;
+    color: #e8c4a8;
+    margin-bottom: 30px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2em;
+    color: #e8c9b8;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 15px;
+    border-bottom: 2px solid transparent;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #f5d9b8;
+    border-bottom: 2px solid #c4a8a8;
+}
+
+nav a.active {
+    color: #f5d9b8;
+    border-bottom: 2px solid #c4a8a8;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.section {
+    display: none;
+    padding: 80px 40px;
+    text-align: center;
+    min-height: 60vh;
+    animation: fadeIn 0.5s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.section h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 3em;
+    letter-spacing: 4px;
+    color: #e8c9b8;
+    text-transform: uppercase;
+}
+
+#works {
+    background: #2a1a4e;
+}
+
+#reviews {
+    background: #1e1a3f;
+}
+
+#op-eds {
+    background: #3d2660;
+}
+
+#videos {
+    background: #2d1b5e;
+}
+
+#life {
+    background: #3a2a5a;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #2a1a4e;
+    border-top: 2px solid #6a5acd;
+    color: #d4a894;
+    font-size: 0.9em;
+}

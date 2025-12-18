@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tianyi Jiang</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>TIANYI JIANG</h1>
+        <nav>
+            <a href="#works" class="nav-link active">Works</a>
+            <a href="#reviews" class="nav-link">Reviews</a>
+            <a href="#op-eds" class="nav-link">Op-Eds</a>
+            <a href="#videos" class="nav-link">Videos</a>
+            <a href="#life" class="nav-link">Life</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="works" class="section active">
+            <h2>Works</h2>
+        </section>
+
+        <section id="reviews" class="section">
+            <h2>Reviews</h2>
+        </section>
+
+        <section id="op-eds" class="section">
+            <h2>Op-Eds</h2>
+        </section>
+
+        <section id="videos" class="section">
+            <h2>Videos</h2>
+        </section>
+
+        <section id="life" class="section">
+            <h2>Life</h2>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Tianyi Jiang</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelectorAll('.section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.querySelectorAll('.nav-link').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                
+                let id = this.getAttribute('href').substring(1);
+                document.getElementById(id).classList.add('active');
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
