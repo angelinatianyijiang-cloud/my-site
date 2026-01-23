@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tianyi Jiang's Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .splash-page {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background: linear-gradient(135deg, #1a2a5f 0%, #3d5fa8 25%, #5b4b8a 50%, #8b5f7a 75%, #6b4a8a 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .splash-page.hidden {
+            display: none;
+        }
+
+        @keyframes float-down {
+            0% {
+                transform: translateY(-80px) scale(0.9);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(40px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .lioness-bounce {
+            animation: float-down 3s ease-out infinite;
+            text-align: center;
+        }
+
+        .lioness-icon {
+            font-size: 180px;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.4));
+            text-shadow: 0 4px 20px rgba(255,255,255,0.2);
+        }
+
+        .splash-text {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 32px;
+            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.3));
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .sparkle {
+            position: absolute;
+            opacity: 0.7;
+            animation: twinkle 2s infinite;
+        }
+
+        
+        .main-content {
+            background-color: #f5f4e1;
+            color: #1a1a1a;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: #f5f4e1;
+            border-bottom: 2px solid #8B5A6B;
+            padding: 24px 32px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 24px;
+            color: #1a1a1a;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        nav button {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a1a1a;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+            padding: 0;
+        }
+
+        nav button:hover {
+            color: #8B5A6B;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 32px;
+            min-height: 80vh;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 48px;
+            color: #6B4C7A;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .welcome-text {
+            font-size: 24px;
+            text-align: center;
+            color: #8B5A6B;
+            margin-top: 50px;
+        }
+
+        .highlight-box {
+            padding: 32px 24px;
+            background-color: #faf8f3;
+            border-left: 4px solid #5B8B8B;
+            margin: 32px 0;
+        }
+
+        .highlight-box p:first-child {
+            font-weight: 600;
+            color: #8B5A6B;
+            margin-bottom: 12px;
+        }
+
+        .highlight-box p:last-child {
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .scroll-btn {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            background-color: #8B5A6B;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            z-index: 200;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-btn.show {
+            display: block;
+        }
+
+        .scroll-btn:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            background-color: #faf8f3;
+            border-top: 2px solid #8B5A6B;
+            padding: 32px;
+            text-align: center;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="splash-page" id="splashPage">
+        <div class="sparkle" style="top: 15%; left: 10%;">✨</div>
+        <div class="sparkle" style="top: 25%; right: 15%;">💜</div>
+        <div class="sparkle" style="top: 45%; left: 20%;">◆</div>
+        <div class="sparkle" style="bottom: 25%; right: 20%;">✨</div>
+        <div class="sparkle" style="bottom: 15%; left: 15%;">💜</div>
+
+        <div class="lioness-bounce">
+            <div class="lioness-icon">🦁</div>
+            <p class="splash-text">点击进入Tianyi Jiang's Portfolio</p>
+        </div>
+    </div>
+
+    
+    <div class="main-content" id="mainContent" style="display: none;">
+        <header>
+            <h1>Tianyi Jiang's Portfolio</h1>
+            <nav>
+                <button onclick="showPage('home')">Home</button>
+                <button onclick="showPage('works')">Works</button>
+                <button onclick="showPage('reviews')">Reviews</button>
+                <button onclick="showPage('op-eds')">Op-Eds</button>
+                <button onclick="showPage('videos')">Videos</button>
+                <button onclick="showPage('life')">Life</button>
+            </nav>
+        </header>
+
+       
+        <div id="home" class="page active">
+            <main>
+                <h2>Welcome to Angelina's Website</h2>
+                <p>Name: Tianyi Jiang, or Angelina. </p>
+                <p>Pronouns: She/Her/Hers. </p>
+                <p class="welcome-text">选择上面的栏目进入</p>
+            </main>
+        </div>
+
+        
+        <div id="works" class="page">
+            <main>
+                <h2>Works</h2>
+                <p>Anthropology</p>
+                <p>Religious Studies</p>
+                <p>China Southwest</p>
+                <p>Art History</p>
+                <p>Education</p>
+                <p>Art & AI</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <div class="highlight-box">
+                    <p>特别标注</p>
+                    <p>Text text text</p>
+                </div>
+            </main>
+        </div>
+
+        
+        <div id="reviews" class="page">
+            <main>
+                <h2>Reviews</h2>
+                <p>Op-Ed 1</p>
+                <p>Op-Ed 2</p>
+                <p>Op-Ed 3</p>
+                <p>Published Reviews</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <div class="highlight-box">
+                    <p>特别标注</p>
+                    <p>Text text text</p>
+                </div>
+            </main>
+        </div>
+
+        
+        <div id="op-eds" class="page">
+            <main>
+                <h2>Op-Eds</h2>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <div class="highlight-box">
+                    <p>特别标注</p>
+                    <p>Text text text</p>
+                </div>
+            </main>
+        </div>
+
+        
+        <div id="videos" class="page">
+            <main>
+                <h2>Videos</h2>
+                <p>The Story of Cat City</p>
+                <p>Legend of the Demigods</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <div class="highlight-box">
+                    <p>特别标注</p>
+                    <p>Text text text</p>
+                </div>
+            </main>
+        </div>
+
+        
+        <div id="life" class="page">
+            <main>
+                <h2>Life</h2>
+                <p>2023</p>
+                <p>2024</p>
+                <p>2025</p>
+                <p>2026</p>
+                <p>2027</p>
+                <p>2028</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <p>Text text text</p>
+                <div class="highlight-box">
+                    <p>特别标注</p>
+                    <p>Text text text</p>
+                </div>
+            </main>
+        </div>
+
+        <button class="scroll-btn" id="scrollBtn" onclick="scrollToTop()">↑</button>
+
+        <footer>
+            <p>&copy; 2025 Tianyi Jiang's Portfolio</p>
+        </footer>
+    </div>
+
+    <script>
+        const splashPage = document.getElementById('splashPage');
+        const mainContent = document.getElementById('mainContent');
+        const scrollBtn = document.getElementById('scrollBtn');
+
+       
+        splashPage.addEventListener('click', () => {
+            splashPage.style.display = 'none';
+            mainContent.style.display = 'block';
+        });
+
+       
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        });
+
+       
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html> 
