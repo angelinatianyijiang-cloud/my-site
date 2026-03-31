@@ -5,87 +5,77 @@
 }
 
 body {
-    font-family: 'Playfair Display', serif;
+    font-family: Arial, sans-serif;
     background: #2a1a4e;
     color: #e8c9b8;
 }
 
 header {
     background: #3d2660;
-    padding: 60px 40px;
+    padding: 40px;
     text-align: center;
     border-bottom: 2px solid #6a5acd;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 h1 {
-    font-family: 'Cinzel', serif;
-    font-size: 3.5em;
-    letter-spacing: 8px;
+    font-size: 2.5em;
     color: #e8c4a8;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 nav {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
+    gap: 20px;
 }
 
 nav a {
-    font-family: 'Cinzel', serif;
-    font-size: 1.2em;
     color: #e8c9b8;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding: 8px 15px;
+    font-size: 1em;
+    padding: 5px 10px;
     border-bottom: 2px solid transparent;
+    cursor: pointer;
     transition: 0.3s;
 }
 
 nav a:hover {
-    color: #f5d9b8;
-    border-bottom: 2px solid #c4a8a8;
+    border-bottom: 2px solid #e8c9b8;
 }
 
 nav a.active {
-    color: #f5d9b8;
-    border-bottom: 2px solid #c4a8a8;
+    border-bottom: 2px solid #e8c9b8;
 }
 
 main {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .section {
     display: none;
-    padding: 80px 40px;
-    text-align: center;
-    min-height: 60vh;
-    animation: fadeIn 0.5s ease;
+    padding: 60px 40px;
+    min-height: 150vh;
 }
 
 .section.active {
     display: block;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.section h2 {
+    font-size: 2em;
+    color: #e8c9b8;
+    margin-bottom: 30px;
 }
 
-.section h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 3em;
-    letter-spacing: 4px;
-    color: #e8c9b8;
-    text-transform: uppercase;
+.section p {
+    color: #d4a894;
+    font-size: 1em;
+    line-height: 1.8;
+    margin-bottom: 15px;
 }
 
 #works {
@@ -108,11 +98,30 @@ main {
     background: #3a2a5a;
 }
 
+#scrollBtn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    background: #6a5acd;
+    color: #e8c4a8;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: none;
+    z-index: 200;
+}
+
+#scrollBtn:hover {
+    background: #8b5cf6;
+}
+
 footer {
     text-align: center;
     padding: 30px;
     background: #2a1a4e;
     border-top: 2px solid #6a5acd;
     color: #d4a894;
-    font-size: 0.9em;
 }
